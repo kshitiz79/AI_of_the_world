@@ -1,11 +1,20 @@
+import AIWelcome from "@/components/Home/AIWelcome";
+import Banner from "@/components/Home/Banner";
+import Banner2 from "@/components/Home/Banner2";
+import ImageGrig from "@/components/Home/ImageGrid";
+import ThreadParent from "@/components/Home/ThreadParent";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-       Hello
-      </main>
+    <div mt-2 >
+
+
+      <Banner/>
+      <ThreadParent/>
+<AIWelcome/>
+
+     <ImageGrig/>
     </div>
   );
 }
