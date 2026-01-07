@@ -34,7 +34,7 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {
         {mode === 'bar' && <NavItems items={navItems} />}
         <Wrapper modeProps={modeProps}>
           <Scroll>
-            <Typography />
+      
             <Images />
           </Scroll>
           <Scroll html />
@@ -86,7 +86,7 @@ const ModeWrapper = memo(function ModeWrapper({
     gl.setRenderTarget(null);
 
     // Background Color
-    gl.setClearColor(0x5227ff, 1);
+gl.setClearColor(0x000000, 1);
   });
 
   const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps;
@@ -237,42 +237,3 @@ function Images() {
   );
 }
 
-function Typography() {
-  const DEVICE = {
-    mobile: { fontSize: 0.2 },
-    tablet: { fontSize: 0.4 },
-    desktop: { fontSize: 0.6 }
-  };
-  const getDevice = () => {
-    const w = window.innerWidth;
-    return w <= 639 ? 'mobile' : w <= 1023 ? 'tablet' : 'desktop';
-  };
-
-  const [device, setDevice] = useState(getDevice());
-
-  useEffect(() => {
-    const onResize = () => setDevice(getDevice());
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const { fontSize } = DEVICE[device];
-
-  return (
-    <Text
-      position={[0, 0, 12]}
-      fontSize={fontSize}
-      letterSpacing={-0.05}
-      outlineWidth={0}
-      outlineBlur="20%"
-      outlineColor="#000"
-      outlineOpacity={0.5}
-      color="white"
-      anchorX="center"
-      anchorY="middle"
-    >
-      React Bits
-    </Text>
-  );
-}

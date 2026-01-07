@@ -1,52 +1,57 @@
 import CardNav from './CardNav'
-import logo from './../../../assets/download.png';
+
+
+
+
+
+
+
+
 
 const Header = () => {
   const items = [
     {
-      label: "About",
+      label: "Image",
       bgColor: "#0D0716",
       textColor: "#fff",
       links: [
-        { label: "Company", ariaLabel: "About Company" },
-        { label: "Careers", ariaLabel: "About Careers" }
+        { label: "Creative Images", ariaLabel: "About Company", href: "/creative-images" }
+        // { label: "Careers", ariaLabel: "About Careers", href: "/careers" }
       ]
     },
     {
-      label: "Projects", 
+      label: "Gif", 
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Featured", ariaLabel: "Featured Projects" },
-        { label: "Case Studies", ariaLabel: "Project Case Studies" }
+        { label: "Gifs", ariaLabel: "Featured Projects", href: "/gifs" }
+        // { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/case-studies" }
       ]
     },
     {
-      label: "Contact",
+      label: "Videos",
       bgColor: "#271E37", 
       textColor: "#fff",
       links: [
-        { label: "Email", ariaLabel: "Email us" },
-        { label: "Twitter", ariaLabel: "Twitter" },
-        { label: "LinkedIn", ariaLabel: "LinkedIn" }
+        // internal routes example
+        { label: "Videos", ariaLabel: "Email us", href: "/videos" }
+
       ]
     }
   ];
 
   return (
     <CardNav
-      logo={logo}
-      logoAlt="Company Logo"
+      logo="/logoheader.svg"
+      logoAlt="Comp Logo"
       items={items}
       baseColor="#fff"
-      menuColor="#000"
-      buttonBgColor="#111"
+      menuColor="#000000"
+      buttonBgColor="#000000"
       buttonTextColor="#fff"
       ease="power3.out"
     />
   );
 };
-
-
 
 export default Header;

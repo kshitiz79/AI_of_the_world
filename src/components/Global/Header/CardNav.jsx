@@ -1,9 +1,10 @@
-
 "use client"
 import { useLayoutEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
-// use your own icon import if react-icons is not available
 import { GoArrowUpRight } from 'react-icons/go';
+import { Button as MovingBorderButton } from '@/components/ui/moving-border';
+
 
 const CardNav = ({
   logo,
@@ -134,9 +135,11 @@ const CardNav = ({
     if (el) cardsRef.current[i] = el;
   };
 
+  const isExternal = href => /^(https?:)?\/\//.test(href);
+
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[900px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
     >
       <nav
         ref={navRef}
@@ -165,16 +168,24 @@ const CardNav = ({
           </div>
 
           <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
-            <img src={logo} alt={logoAlt} className="logo h-[28px]" />
+            {/* Logo navigates to home */}
+            {logo ? (
+              <Link href="/" className="inline-block" aria-label="Home">
+                <img src={logo} alt={logoAlt} className="logo h-[28px]" />
+              </Link>
+            ) : (
+              <Link href="/" className="text-sm font-medium">Home</Link>
+            )}
           </div>
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+          <MovingBorderButton
+            borderRadius="0.75rem"
+            containerClassName="hidden md:inline-flex h-full"
+            className="h-full px-4 bg-black  "
+            duration={3000}
           >
             Get Started
-          </button>
+          </MovingBorderButton>
         </div>
 
         <div
@@ -194,17 +205,37 @@ const CardNav = ({
                 {item.label}
               </div>
               <div className="nav-card-links mt-auto flex flex-col gap-[2px]">
-                {item.links?.map((lnk, i) => (
-                  <a
-                    key={`${lnk.label}-${i}`}
-                    className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
-                    href={lnk.href}
-                    aria-label={lnk.ariaLabel}
-                  >
-                    <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
-                    {lnk.label}
-                  </a>
-                ))}
+                {item.links?.map((lnk, i) => {
+                  const href = lnk.href || '#';
+                  if (isExternal(href)) {
+                    return (
+                      <a
+                        key={`${lnk.label}-${i}`}
+                        className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                        href={href}
+                        aria-label={lnk.ariaLabel}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                        {lnk.label}
+                      </a>
+                    );
+                  }
+
+                  // internal route - use next/link
+                  return (
+                    <Link 
+                      key={`${lnk.label}-${i}`} 
+                      href={href}
+                      className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                      aria-label={lnk.ariaLabel}
+                    >
+                      <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                      {lnk.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           ))}

@@ -1,9 +1,6 @@
-
-
-import Header from "@/components/Global/Header/Header";
+import Footer from "@/components/Global/Footer/Footer";
 import "./globals.css";
-import Footer from "@/components/Global/Footer";
-
+import Header from "@/components/Global/Header/Header";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,16 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Header/>
-      <body
+      <body className="bg-black" style={{ paddingBottom: '400px' }}> {/* Add padding-bottom equal to footer height to prevent overlap */}
 
-      >
+          <Header />
+          <main>{children}</main>
+          <Footer />
 
-
-        {children}
-        
       </body>
-              <Footer/>
     </html>
   );
 }

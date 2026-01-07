@@ -1,0 +1,46 @@
+{
+  "artisticStyles": [
+    { "id": "realistic", "label": "Realistic", "icon": "🎨" },
+    { "id": "cinematic", "label": "Cinematic", "icon": "🎬" },
+    { "id": "anime", "label": "Anime", "icon": "🎌" },
+    { "id": "architecture", "label": "Architecture", "icon": "🏛️" },
+    { "id": "cartoon", "label": "Cartoon", "icon": "🎪" },
+    { "id": "3d-render", "label": "3D Render", "icon": "🎲" },
+    { "id": "vector", "label": "Vector", "icon": "📐" },
+    { "id": "watercolor", "label": "Watercolor", "icon": "🖌️" },
+    { "id": "sketch", "label": "Sketch / Line Art", "icon": "✏️" },
+    { "id": "oil-painting", "label": "Oil Painting", "icon": "🖼️" },
+    { "id": "abstract", "label": "Abstract", "icon": "🌀" },
+    { "id": "surreal", "label": "Surreal", "icon": "🌙" },
+    { "id": "fashion", "label": "Fashion", "icon": "👗" },
+    { "id": "photography", "label": "Photography", "icon": "📷" },
+    { "id": "portrait", "label": "Portrait", "icon": "👤" }
+  ],
+  "corporateProfessional": [
+    { "id": "corporate", "label": "Corporate", "icon": "💼" },
+    { "id": "business", "label": "Business", "icon": "📊" },
+    { "id": "minimalist", "label": "Minimalist", "icon": "⬜" },
+    { "id": "modern", "label": "Modern", "icon": "✨" },
+    { "id": "product-poster", "label": "Product / Poster", "icon": "📦" },
+    { "id": "logo", "label": "Logo", "icon": "🏷️" },
+    { "id": "infographic", "label": "Infographic", "icon": "📈" },
+    { "id": "concept-art", "label": "Concept art", "icon": "🎭" }
+  ],
+  "genreThemes": [
+    { "id": "fantasy", "label": "Fantasy", "icon": "🧙" },
+    { "id": "sci-fi", "label": "Sci-Fi", "icon": "🚀" },
+    { "id": "cyberpunk", "label": "Cyberpunk", "icon": "🤖" },
+    { "id": "retro-vintage", "label": "Retro / Vintage", "icon": "📻" },
+    { "id": "grunge", "label": "Grunge", "icon": "🎸" }
+  ],
+  "moodTone": [
+    { "id": "vibrant", "label": "Vibrant / Colorful", "icon": "🌈" },
+    { "id": "dark-moody", "label": "Dark / Moody", "icon": "🌑" },
+    { "id": "elegant", "label": "Elegant", "icon": "💎" }
+  ],
+  "optionalAddOns": [
+    { "id": "glitch", "label": "Glitch", "icon": "⚡" },
+    { "id": "neon", "label": "Neon", "icon": "💡" },
+    { "id": "flat-design", "label": "Flat Design", "icon": "📱" }
+  ]
+}

@@ -2,9 +2,17 @@
 import React from "react";
 import LightRays from './LightRays';
 
+
+
 export default function Banner() {
   return (
-    <div style={{ width: '100%', height: '800px', position: 'relative', backgroundColor: 'black' }}>
+    <div style={{ width: '100%', height: '800px', position: 'relative', backgroundColor: 'black', overflow: 'hidden' }}>
+      {/* Splash cursor effect - only in banner */}
+
+      
+      {/* Click spark effect - only in banner */}
+  
+      
       {/* Light effect (non-interactive) */}
       <LightRays
         raysOrigin="top-center"
@@ -22,7 +30,7 @@ export default function Banner() {
       {/* Centered overlay content */}
       <div
         className="absolute inset-0 flex items-center justify-center px-4"
-        style={{ zIndex: 5, pointerEvents: 'auto' }} // ensure the overlay is interactive
+        style={{ zIndex: 10, pointerEvents: 'auto' }} // ensure the overlay is interactive
       >
         <div className="text-center max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-300 leading-tight drop-shadow-lg">
