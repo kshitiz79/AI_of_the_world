@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaUsers, FaImage, FaVideo, FaCheckCircle } from "react-icons/fa";
+import { FaUsers, FaImage, FaVideo, FaCheckCircle, FaTag } from "react-icons/fa";
 import { MdGif } from "react-icons/md";
 
 export default function AdminDashboardPage() {
@@ -50,6 +50,15 @@ export default function AdminDashboardPage() {
                   <div>
                     <div className="font-semibold">Verify Creator Prompts</div>
                     <div className="text-sm text-gray-400">Review and approve submissions</div>
+                  </div>
+                </div>
+              </a>
+              <a href="/panel/admin-dashboard/manage-tags" className="block bg-gray-800 hover:bg-gray-700 rounded-lg p-4 transition-colors">
+                <div className="flex items-center gap-3">
+                  <FaTag className="text-2xl text-yellow-500" />
+                  <div>
+                    <div className="font-semibold">Manage Tags</div>
+                    <div className="text-sm text-gray-400">Create, edit, and organize tags</div>
                   </div>
                 </div>
               </a>

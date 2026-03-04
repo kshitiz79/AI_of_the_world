@@ -5,4 +5,5 @@ const nextConfig = {
   reactCompiler: true,      // Your existing config
 };
 
+
 export default nextConfig;

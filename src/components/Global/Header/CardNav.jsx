@@ -1,8 +1,10 @@
 "use client"
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
+import { FaUser } from 'react-icons/fa';
 import { Button as MovingBorderButton } from '@/components/ui/moving-border';
 
 
@@ -17,11 +19,52 @@ const CardNav = ({
   buttonBgColor,
   buttonTextColor
 }) => {
+  const router = useRouter();
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState('');
   const navRef = useRef(null);
   const cardsRef = useRef([]);
   const tlRef = useRef(null);
+
+  // Check if user is logged in
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem('authToken');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+      setIsLoggedIn(true);
+      try {
+        const userData = JSON.parse(user);
+        setUsername(userData.username || userData.full_name || 'User');
+      } catch (err) {
+        console.error('Failed to parse user data:', err);
+      }
+    }
+    setLoading(false);
+  }, []);
+
+  const handleProfileClick = () => {
+    try {
+      const user = localStorage.getItem('user');
+      if (user) {
+        const userData = JSON.parse(user);
+        const isAdmin = userData.role === 'admin';
+        
+        if (isAdmin) {
+          router.push('/panel/admin-dashboard');
+        } else {
+          router.push('/panel/your-dashboard');
+        }
+      }
+    } catch (err) {
+      console.error('Failed to parse user data:', err);
+      router.push('/panel/your-dashboard');
+    }
+  };
 
   const calculateHeight = () => {
     const navEl = navRef.current;
@@ -178,14 +221,36 @@ const CardNav = ({
             )}
           </div>
 
-          <MovingBorderButton
-            borderRadius="0.75rem"
-            containerClassName="hidden md:inline-flex h-full"
-            className="h-full px-4 bg-black  "
-            duration={3000}
-          >
-            Get Started
-          </MovingBorderButton>
+          {loading ? (
+            // Skeleton loader while checking auth
+            <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg animate-pulse">
+              <div className="w-8 h-8 bg-gray-700 rounded-full"></div>
+              <div className="w-6 h-4 bg-gray-700 rounded"></div>
+            </div>
+          ) : isLoggedIn ? (
+            // Profile button when logged in - redirects to dashboard
+            <button
+              onClick={handleProfileClick}
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:from-cyan-500 hover:to-purple-500 transition-all"
+            >
+              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                <FaUser className="text-sm" />
+              </div>
+              <span className="font-medium">{username}</span>
+            </button>
+          ) : (
+            // Get Started button when not logged in
+            <Link href="/signin" className="hidden md:inline-flex">
+              <MovingBorderButton
+                borderRadius="0.75rem"
+                containerClassName="h-full"
+                className="h-full px-4 py-2 bg-black"
+                duration={3000}
+              >
+                Get Started
+              </MovingBorderButton>
+            </Link>
+          )}
         </div>
 
         <div
